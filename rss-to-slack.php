@@ -8,7 +8,7 @@ $listfile = [YOUR WHITELIST];
 #==============================================================
 $feed = file_get_contents($feed);
 $feed = explode("</item>", $feed);
-foreach ($feed as & $row) {
+foreach ($feed as &$row) {
     $row = pregRssCleanup($row);
 }
 $feed = implode("</item>", $feed);
@@ -21,7 +21,7 @@ $string = <<<EOF
 `<%s|Chartbeat>`  `<%s|Twitter>`  `<%s|Facebook>`  `<%s|Reddit>`  `<%s|LinkedIn>`
 EOF;
 $string = trim(str_replace("\r\n", "\n", $string));
-foreach ($data as & $row) {
+foreach ($data as &$row) {
     $row['article'] = preg_replace("/^.*?article([0-9]+).html$/", "$1", $row['guid']);
     $row['chartbeat'] = "https://chartbeat.com/publishing/dashboard/sacbee.com/#path=" . urlencode(str_replace("http://www.", "", $row['guid']));
     $row['facebook'] = "https://www.facebook.com/sharer/sharer.php?u=" . $row['guid'];
